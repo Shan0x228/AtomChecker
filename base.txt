@@ -1,0 +1,5 @@
+admin:12345
+user:p@_SSw0rD
+php_gay:1337
+ПетяЮзер:322
+S0M3_USER:S0M3_PdSSW0RD

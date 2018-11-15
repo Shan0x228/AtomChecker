@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Graphics">
+      <UniqueIdentifier>{c358cd5f-28db-4c71-a335-1083ce978d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\DWM">
+      <UniqueIdentifier>{5d798dcc-5386-49df-b0bb-78c50ca077b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Graphics\D2D1_Wrapper">
+      <UniqueIdentifier>{78628580-4a8f-4c01-b4c8-1371105b4b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Graphics\Renderer">
+      <UniqueIdentifier>{18819d58-ceab-41a9-80b4-86b4cf3ffdd0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="D2D1_Wrapper.h">
+      <Filter>Исходные файлы\Graphics\D2D1_Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="UiRenderer.h">
+      <Filter>Исходные файлы\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomHTTP.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Entry.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DwmMethods.cpp">
+      <Filter>Исходные файлы\DWM</Filter>
+    </ClCompile>
+    <ClCompile Include="D2D1_Wrapper.cpp">
+      <Filter>Исходные файлы\Graphics\D2D1_Wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="UiRenderer.cpp">
+      <Filter>Исходные файлы\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="UiDrawing.cpp">
+      <Filter>Исходные файлы\Graphics\Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
