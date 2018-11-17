@@ -54,6 +54,8 @@ private:
 
 	Shkolnik::net::AtomHTTP* HttpRequest{};
 
+	std::thread* MainCheckThread{};
+
 // Methods:
 private:
 	// Method redraw WinAPI controls
@@ -102,9 +104,12 @@ private:
 	// On stop button click event
 	void OnStopButton_Click();
 
+	// Method perform HTTP requests and anal. data
+	void CheckData();
+
 // Controls
 private:
-	enum UI_CTL_ID
+	enum class UI_CTL_ID
 	{
 		LOAD_BTN,
 		START_BTN,

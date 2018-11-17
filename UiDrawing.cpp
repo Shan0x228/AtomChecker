@@ -43,7 +43,7 @@ void UiRenderer::OnDrawButton(HDC hDC, const int nButtonState, const int nButton
 
 	switch (nButtonId)
 	{
-		case Application::UI_CTL_ID::LOAD_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::LOAD_BTN):
 		{
 			this->m_pD2D1RenderTarget->FillRectangle(D2D1::RectF(0.0f, 0.0f, rc.right, rc.bottom), this->m_pD2D1SolidColorBrush);
 			
@@ -58,7 +58,7 @@ void UiRenderer::OnDrawButton(HDC hDC, const int nButtonState, const int nButton
 		}
 		break;
 
-		case Application::UI_CTL_ID::START_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::START_BTN):
 		{
 			this->m_pD2D1RenderTarget->FillRectangle(D2D1::RectF(0.0f, 0.0f, rc.right, rc.bottom), this->m_pD2D1SolidColorBrush);
 			
@@ -73,7 +73,7 @@ void UiRenderer::OnDrawButton(HDC hDC, const int nButtonState, const int nButton
 		}
 		break;
 
-		case Application::UI_CTL_ID::STOP_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::STOP_BTN):
 		{
 			this->m_pD2D1RenderTarget->FillRectangle(D2D1::RectF(0.0f, 0.0f, rc.right, rc.bottom), this->m_pD2D1SolidColorBrush);
 

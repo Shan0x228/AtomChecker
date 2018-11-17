@@ -243,7 +243,7 @@ std::wstring Shkolnik::net::AtomHTTP::SendRequest()
 	while (true)
 	{
 		// Небольшая пауза...
-		this_thread::sleep_for(std::chrono::milliseconds(300));
+		this_thread::sleep_for(std::chrono::milliseconds(10));
 
 		// Получение данных от сервера(первый 512 байт)
 		int n = recv(this->socketHandle, &buffer[0], 1024, 0);
@@ -287,6 +287,10 @@ std::wstring Shkolnik::net::AtomHTTP::GetResponseBody()
 // Деструктор
 Shkolnik::net::AtomHTTP::~AtomHTTP()
 {
+	closesocket(this->socketHandle);
+#ifdef _WIN32
+	WSACleanup();
+#endif
 }
 
 #endif // ATOMHTTP_HPP_

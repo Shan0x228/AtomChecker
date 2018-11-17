@@ -1,23 +1,5 @@
-﻿  Application.cpp
-  D2D1_Wrapper.cpp
-  DwmMethods.cpp
-  Entry.cpp
-  Events.cpp
+﻿  Events.cpp
 c:\users\shan0x\source\repos\atomchecker\events.cpp(29): warning C4066: знаки после первого в константе из двухбайтовых знаков пропускаются
-c:\users\shan0x\source\repos\atomchecker\events.cpp(58): warning C4101: ex: неиспользованная локальная переменная
-  UiDrawing.cpp
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(11): warning C4244: аргумент: преобразование "int" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(10): warning C4244: аргумент: преобразование "const int" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(9): warning C4244: аргумент: преобразование "const int" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(23): warning C4244: аргумент: преобразование "const int" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(48): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(57): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(63): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(72): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(78): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-c:\users\shan0x\source\repos\atomchecker\uidrawing.cpp(87): warning C4244: аргумент: преобразование "const LONG" в "FLOAT", возможна потеря данных
-  UiRenderer.cpp
-  Создание кода...
 LINK : warning LNK4075: не учитывается "/INCREMENTAL" из-за спецификации "/FORCE"
 D2D1_Wrapper.obj : warning LNK4006: "public: __thiscall Shkolnik::net::AtomHTTP::AtomHTTP(class std::basic_string<wchar_t,struct std::char_traits<wchar_t>,class std::allocator<wchar_t> > const &,int const &)" (??0AtomHTTP@net@Shkolnik@@QAE@ABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@ABH@Z) уже определен в Application.obj; второе определение пропущено
 D2D1_Wrapper.obj : warning LNK4006: "public: __thiscall Shkolnik::net::AtomHTTP::~AtomHTTP(void)" (??1AtomHTTP@net@Shkolnik@@QAE@XZ) уже определен в Application.obj; второе определение пропущено

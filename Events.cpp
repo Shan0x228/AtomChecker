@@ -38,10 +38,26 @@ void Application::OnLoadButton_Click()
 void Application::OnStartButton_Click()
 {
 	// ÌÍÎÃÎÏÎÒÎ×ÍÎÑÒÜ ÒÓÒ!
+	EnableWindow(this->hLoadButton, false);
 	EnableWindow(this->hStartButton, false);
 	EnableWindow(this->hStopButton, true);
 
 	SendMessage(this->hListBox, LB_RESETCONTENT, 0, 0);
+
+	this->MainCheckThread = new std::thread{ &Application::CheckData, this };
+	this->MainCheckThread->detach();
+}
+
+// On stop button click event
+void Application::OnStopButton_Click()
+{
+	// TODO...
+	MessageBox(this->m_hAppMainWindow, L"StopBtn!", L"OnClick!", MB_ICONINFORMATION);
+}
+
+// Method perform HTTP requests and anal. data
+void Application::CheckData()
+{
 	std::pair<std::wstring, std::wstring> login_pass{};
 	std::wstring data{};
 	for (auto& x : this->BaseData)
@@ -49,24 +65,23 @@ void Application::OnStartButton_Click()
 		data.clear();
 		login_pass = this->SplitLoginData(x);
 		data += L"username=" + login_pass.first + L"&" + L"password=" + login_pass.second;
-		HttpRequest = new Shkolnik::net::AtomHTTP{ L"127.0.0.1", 8080 };
-		
+
 		try
 		{
+			HttpRequest = new Shkolnik::net::AtomHTTP{ L"127.0.0.1", 8080 };
 			HttpRequest->SetupRequest(L"/", Shkolnik::net::AtomHTTP::HTTP::POST);
+			HttpRequest->AddHeader(L"Host: 127.0.0.1");
+			HttpRequest->AddHeader(L"Content-Type: application/x-www-form-urlencoded");
+			HttpRequest->AddHeader(L"Accept: */*");
+			HttpRequest->AddHeader(L"Content-Length: " + std::to_wstring(data.length()));
+
+			HttpRequest->AddRequestBody(data);
+			HttpRequest->SendRequest();
 		}
-		catch (const std::exception& ex)
+		catch (const std::wstring& ex_msg)
 		{
-			Beep(1, 1);
+			MessageBox(this->m_hAppMainWindow, ex_msg.c_str(), L"Exception!", MB_ICONERROR);
 		}
-
-		HttpRequest->AddHeader(L"Host: 127.0.0.1");
-		HttpRequest->AddHeader(L"Content-Type: application/x-www-form-urlencoded");
-		HttpRequest->AddHeader(L"Accept: */*");
-		HttpRequest->AddHeader(L"Content-Length: " + std::to_wstring(data.length()));
-
-		HttpRequest->AddRequestBody(data);
-		HttpRequest->SendRequest();
 
 		std::wstring res = HttpRequest->GetResponseBody();
 
@@ -74,6 +89,7 @@ void Application::OnStartButton_Click()
 		if (invalid_pos == std::wstring::npos)
 		{
 			// ÄÀÍÍÛÅ ÂÀËÈÄÍÛÅ
+			SendMessage(this->hListBox, LB_RESETCONTENT, 0, 0);
 			ListBox_AddString(this->hListBox, std::wstring(L"VALID DATA -> " + login_pass.first + L":" + login_pass.second).c_str());
 
 			delete this->HttpRequest;
@@ -85,15 +101,12 @@ void Application::OnStartButton_Click()
 		delete this->HttpRequest;
 		this->HttpRequest = nullptr;
 	}
+	delete this->MainCheckThread;
+	this->MainCheckThread = nullptr;
+
 	EnableWindow(this->hStopButton, false);
 	EnableWindow(this->hStartButton, true);
-}
-
-// On stop button click event
-void Application::OnStopButton_Click()
-{
-	// TODO...
-	MessageBox(this->m_hAppMainWindow, L"StopBtn!", L"OnClick!", MB_ICONINFORMATION);
+	EnableWindow(this->hLoadButton, true);
 }
 
 // Method processing ui events
@@ -101,19 +114,19 @@ void Application::DispatchUiEvent(const int nButtonId)
 {
 	switch (nButtonId)
 	{
-		case Application::UI_CTL_ID::LOAD_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::LOAD_BTN):
 		{
 			this->OnLoadButton_Click();
 		}
 		break;
 
-		case Application::UI_CTL_ID::START_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::START_BTN):
 		{
 			this->OnStartButton_Click();
 		}
 		break;
 
-		case Application::UI_CTL_ID::STOP_BTN:
+		case static_cast<int>(Application::UI_CTL_ID::STOP_BTN):
 		{
 			this->OnStopButton_Click();
 		}
@@ -181,10 +194,10 @@ void Application::CreateUiControls()
 	this->hListBox = CreateWindow(
 		L"LISTBOX",
 		L".:|LOG|:.",
-		WS_VISIBLE | WS_CHILD | WS_VSCROLL | LBS_NOSEL,
+		WS_VISIBLE | WS_CHILD | WS_VSCROLL | WS_HSCROLL,
 		0, 200,
 		this->m_nAppWidth - 16,
-		260, this->m_hAppMainWindow, reinterpret_cast<HMENU>(Application::UI_CTL_ID::TEXT_LOG),
+		255, this->m_hAppMainWindow, reinterpret_cast<HMENU>(Application::UI_CTL_ID::TEXT_LOG),
 		nullptr, nullptr
 	);
 
@@ -204,7 +217,7 @@ void Application::CreateUiControls()
 	SendMessage(this->hSysLink, LM_SETITEM, 0, (LPARAM)&item);*/
 }
 
-// Font...
+// SetFont to all controls
 BOOL CALLBACK EnumChildProc(
 	_In_ HWND   hwnd,
 	_In_ LPARAM lParam
